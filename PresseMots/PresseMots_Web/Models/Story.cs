@@ -24,6 +24,7 @@ namespace PresseMots.Models
         public string Title { get; set; }
 
         [DataType(DataType.MultilineText)]
+        [StringLength(10000, MinimumLength = 25)]
         public string Content { get; set; }
 
         [ValidateNever]

@@ -3,16 +3,15 @@ using PresseMots.Models;
 
 namespace PresseMots.ViewModels
 {
-    public class StoryVM
+    public class CommentVM
     {
 
-        public Story Story { get; set; }
-        public List<Story> Stories { get; set; } = new List<Story>();
+        public List<Comment> Comments { get; set; } = new List<Comment>();
 
         public int WordCount { get; set; }
         public string StoryTitle { get; set; }
         public string ShortStory { get; set; }
-        public int StoryId { get; set; }
+        public int? StoryId { get; set; }
 
     }
 }

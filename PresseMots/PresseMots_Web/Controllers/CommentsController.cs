@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using PresseMots.Models;
 using PresseMots.Models.Data;
 using PresseMots.Utility;
+using PresseMots.ViewModels;
 
 namespace PresseMots.Controllers
 {
@@ -37,13 +38,16 @@ namespace PresseMots.Controllers
             var comments = story.Comments.Where(x => !x.Hidden).OrderBy(x => x.Id);
 
             // À FAIRE : Utilisez un VM pour retourner les données de wordCount, storyTitle, shortStory, storyId et comments
+            CommentVM commentVM = new CommentVM();
 
-            ViewBag.WordCount = wordCount;
-            ViewBag.StoryTitle = title;
-            ViewBag.ShortStory = shortStory;
-            ViewBag.StoryId = storyId;
-            
-            return View(comments);
+            commentVM.WordCount = wordCount;
+            commentVM.StoryTitle = title;
+            commentVM.ShortStory = shortStory;
+            commentVM.StoryId = storyId;
+            commentVM.Comments = comments.ToList();
+
+
+            return View(commentVM);
         }
 
  
