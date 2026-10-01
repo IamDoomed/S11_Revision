@@ -19,7 +19,7 @@ namespace PresseMots.Controllers
             _context = context;
         }
 
-        /*
+        
   
         public async Task<IActionResult> Create(int storyId)
         {
@@ -29,10 +29,12 @@ namespace PresseMots.Controllers
                 return NotFound();
             }
             ViewBag.StoryTitle = story.Title;
+            StoryTag storyTag = new StoryTag();
+            storyTag.StoryId = storyId;
 
 
             ViewData["TagId"] = new SelectList(_context.Tags, "Id", "Name");
-            return View();-- METTRE le modèle adéquat! Pour la correspondance, utilisez storyId pour la première relation et la liste pour la deuxième. 
+            return View(storyTag);// METTRE le modèle adéquat! Pour la correspondance, utilisez storyId pour la première relation et la liste pour la deuxième. 
         }
 
 
@@ -100,6 +102,6 @@ namespace PresseMots.Controllers
             return RedirectToAction(nameof(Index), "Stories", new { Id=storyId});
         }
 
-  */
+  
     }
 }

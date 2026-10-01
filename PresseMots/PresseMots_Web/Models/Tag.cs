@@ -18,7 +18,7 @@ namespace PresseMots.Models
 
 
         [ValidateNever]
-        public virtual List<StoryTag>? StoryTag { get; set; }
+        public virtual List<StoryTag>? StoryTags { get; set; }
 
     }
 }

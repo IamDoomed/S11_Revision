@@ -27,7 +27,7 @@ namespace PresseMots.Models
         public string Content { get; set; }
 
         [ValidateNever]
-        public virtual List<StoryTag>? StoryTag { get; set; }
+        public virtual List<StoryTag>? StoryTags { get; set; }
 
         //[NotMapped]
         //public IList<string> Tags { get; set; } = new List<string>();
