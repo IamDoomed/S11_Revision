@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PresseMots.Models;
 using PresseMots.Models.Data;
 
 namespace PresseMots.Controllers
@@ -17,13 +20,17 @@ namespace PresseMots.Controllers
         // GET: Tags
         public async Task<IActionResult> Index()
         {
-              return View(/*...*/);
+            List<Tag> tagsList = await _context.Tags.ToListAsync();
+
+              return View(tagsList);
         }
 
         // GET: Tags/Create
         public IActionResult Create()
         {
+
             return View();
+
         }
 
         // POST: Tags/Create
@@ -31,21 +38,27 @@ namespace PresseMots.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Object model/*[Bind("Id,Name")] Tag tag*/)
+        public async Task<IActionResult> Create(Tag tag)
         {
             if (ModelState.IsValid)
             {
-                /*?*/
+                await _context.Tags.AddAsync(tag);
+                await _context.SaveChangesAsync();
+                return this.RedirectToAction("Index");
             }
-            return View(/*...*/);
+            return this.View(tag);
         }
 
         // GET: Tags/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-           /*..?*/
+            Tag? tag = await _context.Tags.FindAsync(id);
+            if (tag == null)
+            {
+                return NotFound();
+            }
 
-            return View(/*..*/);
+            return View(tag);
         }
 
         // POST: Tags/Delete/5
@@ -53,9 +66,16 @@ namespace PresseMots.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            /*...*/
+            Tag? tag = await _context.Tags.FindAsync(id);
+            if (tag == null)
+            {
+                return NotFound();
+            }
 
-            return RedirectToAction(nameof(Index));
+            _context.Tags.Remove(tag);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+            //return RedirectToAction(nameof(Index));
         }
     }
 }
