@@ -26,11 +26,14 @@ namespace PresseMots.Models
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
 
+        [ValidateNever]
+        public virtual List<StoryTag>? StoryTag { get; set; }
+
         //[NotMapped]
         //public IList<string> Tags { get; set; } = new List<string>();
 
-        [ValidateNever]
-        public virtual List<Tag>? Tags { get; set; }
+        //[ValidateNever]
+        //public virtual List<Tag>? Tags { get; set; }
 
         public DateTime CreationTime { get; set; }
         public DateTime? LastEditTime { get; set; }

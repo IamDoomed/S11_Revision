@@ -16,8 +16,9 @@ namespace PresseMots.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
+
         [ValidateNever]
-        public virtual List<Story>? Stories { get; set; }
+        public virtual List<StoryTag>? StoryTag { get; set; }
 
     }
 }
